@@ -1,24 +1,32 @@
 const mongoose = require("mongoose");
-const Movie = require("./Movie");
+// const Movie = require("./Movie");
 
-const castScheme = new mongoose.Schema({
+const castSchema = new mongoose.Schema({
     name: {
         type: String,
-        required: true
+        required: true,
+        minLength: 5,
+        match: [/^[a-zA-Z0-9\s]+$/, "SPlace of mirth shpuld be aphanumeric"]
+
     },
      age: {
         type: Number,
         required: true,
         max: 120,
-        min: 14
+        min: 1
      },
      born: {
         type: String,
-        required: true
+        required: true,
+        minLength: 10,
+        match: [/^[a-zA-Z0-9\s]+$/, "SPlace of mirth shpuld be aphanumeric"]
+        
      },
      nameInMovie: {
         type: String,
-        reqired: true
+        reqired: true,
+        minLength: 5,
+        match: [/^[a-zA-Z0-9\s]+$/, "SPlace of mirth shpuld be aphanumeric"]
      },
       castImage: {
         type: String,
