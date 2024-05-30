@@ -3,8 +3,6 @@ const bcrypt = require("bcrypt");
 const jwt = require("../lib/jwt");
 const {SECRET} = require("../config/config");
 
-
-//TODO: Check if user exists
 exports.register = (userData) => {
     const user = User.findOne({email: userData.email});
 

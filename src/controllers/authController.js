@@ -4,13 +4,17 @@ const authService = require("../services/authService")
 router.get("/register", (req, res) => {
     res.render("auth/register")
 });
-
+  
 router.post("/register", async (req, res) => {
     const userData = req.body;
 
-    await authService.register(userData);
+    try {
+        await authService.register(userData);
 
-    res.redirect("/auth/login");
+        res.redirect("/auth/login")
+    } catch (err) {
+        res.render("auth/register", {error: err.message});
+    }
 });
 
 router.get("/login", (req, res) => {
