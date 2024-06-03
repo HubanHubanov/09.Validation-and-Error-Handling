@@ -27,7 +27,7 @@ userSchema.pre("save", async function() {
 userSchema.virtual("rePassword")
    .set(function(value) {
     if(value !== this.password) {
-        throw new MongooseError("Password mismatch!");
+        throw new Error("Password mismatch!");
     }
    });
 

@@ -11,4 +11,25 @@ exports.getErrorMessage = (err) => {
    return message
 }
 
+// Middleware factory
+exports.validate = (Model) => (req, res, next) => {
+    
+    try {
+        const modelInstance = new Model(req.body);
+        const isValid = modelInstance.validate();
+
+     if(!isValid) {
+        return res.redirect("/404"); 
+     }
+
+     next();
+     } catch (err) {
+        const message = this.getErrorMessage(err);
+
+        res.render("404", {error: message});
+     }
+
+
+}
+
 
